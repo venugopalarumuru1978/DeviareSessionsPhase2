@@ -1,0 +1,116 @@
+Phase Topics
+-------------
+1. JDBC   (For Self Learning - SQL(MySQL))
+2. Hibernate  
+3. Servlets  (for Self Learning -  HTML, CSS)
+4. JSP - Java Server Pages
+--------------
+Today's Agenda
+--------------
+JDBC - Java Database Connectivity
+--------------
+SQL Commands:- 
+	Creating Table
+	Inserting Data
+	Updating Data
+	Deleting Data
+	Retriving Data
+---------------
+What is a JDBC?
+	The full of JDBC - Java Database Connectivity
+	It is a Technology which meant for interacting with databases.
+
+
+Whenever we create a table in database what are the operations can we do on that table?
+	Adding new rows/Retriving existing rows/Modifing rows/Deleting rows
+		CURD Operations
+
+		C - Create
+		U - Update
+		R - Read
+		D - Delete
+-----
+These CURD Opeations has to be done with JDBC by following steps
+
+1.  Making a connection to a database
+2.  Creating SQL statements
+3.  Executing SQL Statements
+4.  Viewing results
+---
+JDBC Architecture :-
+It provides different collection of predefined classes and interfaces calling as JDBC API.
+to make connection to any database we required JDBC Driver API
+
+Java Application ==>  JDBC API  ==>  JDBC Driver Manager(different drivers for different databases)
+
+DriverManager  class is used to provide different drivers
+Driver Interface is get the suitable driver for specific database. 
+Connection interface is used to get and hold the connection of the database. 
+
+JDBC Driver :- A Driver is an interface to communicate with database to get Connection. 
+
+there 4 different drivers are existed 
+
+Type 1 :  JDBC-ODBC Bridge Driver
+Type 2 :  JDBC-Native API
+Type 3 :  JDBC-Net Pure Java
+Type 4 :  100% Pure Java(Thin Layer)
+
+from above 4 drivers Thin Layer driver is used for java applications remaining all are out dated. 
+------------------------------------------------------------
+Steps to connect to mysql database using Thin Layer Driver:-
+------------------------------------------------------------
+1.   Download and get the mysqlconnector jar file
+2.   Add that jar file to the java application.
+		Right Click on App => Build Path => Configure Build Path => Libraries Tab =>
+		ClassPath  =>  Add External Jars =>  Browse mysqlconnector jar file => Click on
+		Apply and Close Button. 
+3.   Import following package
+	java.sql
+4.    Register Driver class for mysql
+		Class.forName("driver name")
+			com.mysql.cj.jdbc.Driver 		 =  mysql
+			oracle.jdbc.driver.OracleDriver  	 = oracle
+		Class.forName("com.mysql.cj.jdbc.Driver")
+
+5.  Now make the connection with following statement. 
+  Connection  <connObject> = DriverManager.getConnection("ConnectionString", "username", "password");
+		ConnectionString is a string which provides URL of the connecting databases. 
+
+			for MySQL :   "jdbc:mysql://hostname:portno/databasename"
+			for Oracle :-  "jdbc:oracle:thin:@hostname:portno:databasename"
+Connection conObj = DriverManager.getConnection("jdbc:mysql://localhost:3306/Phase2Db","root", "root")
+------------------------
+Write a program to add rows to the table using Java/Jdbc.
+-----------------
+Statement Interface :- this interface is used to generate sql commands. It has following two methods. 
+
+Statement <object> =  connetionObj.createStatement();
+		here createStatement() method initiates sqlcommands. 
+
+executeUpdate("sqlcommand") :- this methods executes all the sql commands execpt "SELECT". 
+		statementObj.executeUpdate("Insert/Update/Delete");
+
+executeQuery("select") :-  this methods executes only select statement and returns ResultSet object which exist all rows of table.
+		ResultSet  <object> =  statementObj.executeQuery("Select");
+------------------------
+ResultSet :-  This class allows to store result of the select statement. 
+
+ResultSet  rs = stmt.executeQuery("Select * from Student");
+
+
+next() :-  this method is used to check data existancy based on row pointer.
+
+getter methods :- these methds are used to retrive data from table columns. 
+getInt(colname)
+getString(colname)
+getFloat(colname)
+getLong(colname)
+getShort(colname)
+-------------------------
+
+while(rs.next())
+{
+	sop(rs.getInt("rollno"))
+	sop(rs.getstring("sname"))
+}
