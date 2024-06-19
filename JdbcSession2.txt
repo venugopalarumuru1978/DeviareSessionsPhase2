@@ -1,0 +1,46 @@
+Today's Agenda
+---------------
+JDBC Continution....
+---------------
+PreparedStatement Interface :- 
+
+	It is as same as Statement Interface in the form of functionality purpose, but it allows 		provides arguments for the sql queries whereever the value is required.
+
+	To specify  argument in the query  "?"  symbol has to used. 
+
+	PreparedStatement  <object> =  connectionObj.prepareStatement("SQL Command");
+
+	Here also following two methods can use for executing sql commands
+
+	executeUpdate() =>   Insert / Update / Delete
+	executeQuery()  =>   Select
+
+Ex:-  Student table
+
+	PreparedStatement  psObj = conObj.prepareStatement("Insert into student(rollno, stdname, 	course, fees) values(?,?,?,?)");
+
+	Note :- every argument will have an index number starts from 1 and so on.
+
+	To pass values for that arguments, "Setter" methods has to be used as follows. 
+	
+	setInt(index, value) = integer
+	setString(index, value) = String
+	setFloat(index, value) = float
+	......
+
+	PreparedStatement  psObj = conObj.prepareStatement("Insert into student(rollno, stdname, 		course, fees) values(?,?,?,?)");
+
+		psObj.setInt(1, 1221);
+		psObj.setString(2, "Pavan");
+		psObj.setString(3, "Java");
+		psObj.setFloat(4, 12000.00f);
+
+		psObj.executeUpdate();
+
+Advantages :-
+		1. Query Complexity will be reduced
+		2. Performance will be improved when compare to Statement Interface.
+		3. Implicit Query Generator
+--------------------------------------------------
+when a class constructor will be executed?
+	whenever we create an object for that class. 

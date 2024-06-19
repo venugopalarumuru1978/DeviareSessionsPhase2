@@ -62,7 +62,7 @@ values(1003, 'Murali Kumar', 'Java', 20000.00),
 --  how to retrive rows from table. 
 /* 
 select  <expression>  from <table name>
-[where clause]
+[where clause]  
 [group by clause]
 [having clause]
 [order by clause]
@@ -71,4 +71,5 @@ select  <expression>  from <table name>
 select * from student;
 select * from employee;
 select * from personinfo;
+
 
